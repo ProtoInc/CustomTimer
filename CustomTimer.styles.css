@@ -4,13 +4,25 @@
     text-align: center;
 }
 
-.start[b-nqmppnqpq9]{
+h3[b-nqmppnqpq9] {
+    margin: 20px 0 0 0;
+}
+
+.start[b-nqmppnqpq9] {
     border-radius: 1.5rem;
     align-items: center;
+    min-width: 70px;
+    min-height: 50px;
+    /*max-width: 100px;*/
 }
 
 .cooldown[b-nqmppnqpq9]{
     color: green;
+    margin: 20px 0 0 0;
+}
+
+.buttons[b-nqmppnqpq9]{
+    margin: 50px 0 0 0;
 }
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-jhoryzq6b8] {

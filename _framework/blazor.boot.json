@@ -7,7 +7,7 @@
   "linkerEnabled": true,
   "resources": {
     "assembly": {
-      "CustomTimer.dll": "sha256-qFg\/A5Q2g2BbtQc+Bl3N8EGhReB3jIAQZegPcumFnc0=",
+      "CustomTimer.dll": "sha256-UzPELoKVxDXElJCT5diRrKsEQMfDcCJZz8PZVlAK62c=",
       "Microsoft.AspNetCore.Components.dll": "sha256-nFqmt0BDtg+Yqu+g4ueH7x0wnfHHWkuSUemANx+l\/pQ=",
       "Microsoft.AspNetCore.Components.Web.dll": "sha256-pS6neF9kpWN2HIz0ankgvM9P\/LGkoppfgrYLcKqnsOs=",
       "Microsoft.AspNetCore.Components.WebAssembly.dll": "sha256-2fbR6RpUxEMnL89Bp4BedWtQJQRpzWAu87gh1UjPAWk=",

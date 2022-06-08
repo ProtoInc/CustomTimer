@@ -1,0 +1,13 @@
+.countdown{
+    font-size: 300px;
+    text-align: center;
+}
+
+.start{
+    border-radius: 1.5rem;
+    align-items: center;
+}
+
+.cooldown{
+    color: green;
+}

@@ -1,0 +1,141 @@
+﻿@implements IDisposable
+
+<h3>Timer</h3>
+
+<div>
+<h3>Set minute interval</h3>
+<input type="number" @bind="baseMinute" />
+<h3>Repeat</h3>
+<input type="number" @bind="repeat" />
+@* <h3>Gap between each interval</h3>
+<input type="number" @bind="cooldownInterval" /> *@
+</div>
+    
+@* <button disabled=@buttonDisable @onclick="DecrementMinute">-</button>
+@baseMinute
+<button disabled=@buttonDisable @onclick="IncrementMinute">+</button> *@
+
+@if (!@cooldownPeriod)
+{
+    <div class="cooldown"><h3>Cooldown Timer @secondTimer s</h3></div>
+}
+<div class="countdown">
+@secondTimer
+</div>
+
+<div>
+<button class="baseMinute" disabled=@buttonDisable @onclick="StartTimer">Start</button>
+</div>
+
+<div>
+<button class="baseMinute" @onclick="StopTimer">Stop</button>
+</div>
+
+@code {
+    public int _repeat { get; set; }
+    public uint secondTimer { get; set; } = 0;
+    public int baseMinute { get; set; } = 0;
+    public int repeat { get; set; } = 0;
+    private uint secondMultiplier = 60;
+    public int cooldownInterval { get; set; } = 3;
+    public bool cooldownPeriod { get; set; } = true;
+    public bool buttonDisable { get; set; }
+    private System.Timers.Timer timer = new System.Timers.Timer(1000);
+
+    private void StopTimer()
+    {
+        timer.Stop();
+        buttonDisable = false;
+        StateHasChanged();
+    }
+
+    private void IncrementMinute()
+    {
+        baseMinute++;
+    }
+
+    private void DecrementMinute()
+    {
+        if (baseMinute != 0)
+            baseMinute--;
+    }
+
+    private void StartTimer()
+    {
+        Console.WriteLine("Started");
+        buttonDisable = true;
+        _repeat = repeat;      
+        
+        secondTimer = (uint) baseMinute * secondMultiplier;
+        StateHasChanged();
+
+        if (baseMinute > 0)
+        {
+            timer.Elapsed += (sender, eventArgs) => OnTimerCallback();
+            timer.Start();
+            _repeat--;
+        }
+        
+        if (_repeat > 0)
+        {
+            cooldownPeriod = true;
+        }
+    } 
+
+    private void OnTimerCallback()
+    {
+
+        if (_repeat > 0 && secondTimer == 0 && cooldownPeriod)
+        {
+            System.Console.WriteLine("Cooldown started...{0}", _repeat);
+            secondTimer = (uint) cooldownInterval + 1;
+            StateHasChanged();
+            cooldownPeriod = false;            
+            System.Console.WriteLine("tick tick tick...{0}", secondTimer);
+        }
+        
+        if (_repeat > 0 && secondTimer == 0 && !cooldownPeriod)
+        {
+            System.Console.WriteLine("Repeat started...{0}", _repeat);
+            secondTimer = (uint) baseMinute * secondMultiplier + 1;
+            StateHasChanged();     
+            cooldownPeriod = true;
+            _repeat--;
+            System.Console.WriteLine("tick tick tick...{0}", secondTimer);
+        }                
+
+        if (_repeat > 0 && secondTimer == 0)
+        {
+            cooldownPeriod = true;
+        }
+
+        if (secondTimer > 0)
+        {            
+            _ = InvokeAsync(() =>
+            {
+                secondTimer--;
+                StateHasChanged();
+                System.Console.WriteLine("tick tick tick...{0}: {1}", secondTimer, _repeat);
+            });
+        }
+
+        if (_repeat == 0  && secondTimer == 0)
+        {
+            System.Console.WriteLine("Timer stopped...");
+            timer.Stop();
+            timer = new System.Timers.Timer(1000);
+            buttonDisable = false;
+            cooldownPeriod = true;
+            StateHasChanged();
+        }
+        
+        //if (secondTimer == 0 || _repeat > 0)
+        //{            
+        //    cooldownPeriod = true;
+        //    _repeat--;
+        //    System.Console.WriteLine($"Timer finished...{secondTimer}:{_repeat}");
+        //}
+    }
+
+    public void Dispose() => timer.Dispose();
+}

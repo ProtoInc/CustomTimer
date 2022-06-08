@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "ProjectMap": {
+    "cddff754-19b8-4eaa-810d-ca174216d1e5": {
+      "ProjectGuid": "cddff754-19b8-4eaa-810d-ca174216d1e5",
+      "DisplayName": "CustomTimer",
+      "ColorIndex": 0
+    }
+  },
+  "NextColorIndex": 1
+}

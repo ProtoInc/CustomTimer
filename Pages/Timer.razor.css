@@ -4,7 +4,7 @@
 }
 
 h3 {
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 .start {
@@ -17,9 +17,9 @@ h3 {
 
 .cooldown{
     color: green;
-    margin: 20px 0 0 0;
+    margin: 10px 0 0 0;
 }
 
 .buttons{
-    margin: 50px 0 0 0;
+    margin: 20px 0 0 0;
 }

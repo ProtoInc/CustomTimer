@@ -1,14 +1,28 @@
 ﻿@implements IDisposable
 
-<h3>Timer</h3>
+<h2>Timer</h2>
 
 <div>
-<h3>Set minute interval</h3>
-<input type="number" @bind="baseMinute" />
-<h3>Repeat</h3>
-<input type="number" @bind="repeat" />
+<div>
+<h3>Minutes</h3>
+<input disabled=@buttonDisable type="number" @bind="baseMinute" />
+<h3 class="repeatInput">Repeat</h3>
+<input disabled=@buttonDisable type="number" @bind="repeat" />
 @* <h3>Gap between each interval</h3>
 <input type="number" @bind="cooldownInterval" /> *@
+</div>
+
+
+<div class="buttons">
+<button class="start" disabled=@buttonDisable @onclick="StartTimer">Start</button>
+<button class="start" @onclick="StopTimer">Stop</button>
+<button class="start" disabled=@buttonDisable @onclick="ResetTimer">Reset</button>
+</div>
+
+<div>
+
+</div>
+
 </div>
     
 @* <button disabled=@buttonDisable @onclick="DecrementMinute">-</button>
@@ -23,13 +37,6 @@
 @secondTimer
 </div>
 
-<div>
-<button class="baseMinute" disabled=@buttonDisable @onclick="StartTimer">Start</button>
-</div>
-
-<div>
-<button class="baseMinute" @onclick="StopTimer">Stop</button>
-</div>
 
 @code {
     public int _repeat { get; set; }
@@ -37,7 +44,7 @@
     public int baseMinute { get; set; } = 0;
     public int repeat { get; set; } = 0;
     private uint secondMultiplier = 60;
-    public int cooldownInterval { get; set; } = 3;
+    public int cooldownInterval { get; set; } = 10;
     public bool cooldownPeriod { get; set; } = true;
     public bool buttonDisable { get; set; }
     private System.Timers.Timer timer = new System.Timers.Timer(1000);
@@ -60,14 +67,30 @@
             baseMinute--;
     }
 
+    private void ResetTimer()
+    {
+        timer.Stop();
+        timer = new System.Timers.Timer(1000);
+        buttonDisable = false;
+        cooldownPeriod = true;
+        baseMinute = 0;
+        repeat = 0;
+        StateHasChanged();
+    }
+
     private void StartTimer()
     {
         Console.WriteLine("Started");
         buttonDisable = true;
         _repeat = repeat;      
-        
+
         secondTimer = (uint) baseMinute * secondMultiplier;
         StateHasChanged();
+
+        if (_repeat > 0)
+        {
+            cooldownPeriod = true;
+        }
 
         if (baseMinute > 0)
         {
@@ -75,10 +98,9 @@
             timer.Start();
             _repeat--;
         }
-        
-        if (_repeat > 0)
+        else
         {
-            cooldownPeriod = true;
+            StopTimer();
         }
     } 
 

@@ -3,11 +3,23 @@
     text-align: center;
 }
 
-.start{
+h3 {
+    margin: 20px 0 0 0;
+}
+
+.start {
     border-radius: 1.5rem;
     align-items: center;
+    min-width: 70px;
+    min-height: 50px;
+    /*max-width: 100px;*/
 }
 
 .cooldown{
     color: green;
+    margin: 20px 0 0 0;
+}
+
+.buttons{
+    margin: 50px 0 0 0;
 }

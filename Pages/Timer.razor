@@ -3,9 +3,9 @@
 <div>
 <div>
 <h3>Minutes</h3>
-<input disabled=@buttonDisable pattern="[0-9]*" @bind="baseMinute" />
+<input disabled=@buttonDisable pattern="[0-9]*" type="text" @bind="baseMinute" />
 <h3 class="repeatInput">Repeat</h3>
-<input disabled=@buttonDisable pattern="[0-9]*" @bind="repeat" />
+<input disabled=@buttonDisable pattern="[0-9]*" type="text" @bind="repeat" />
 @* <h3>Gap between each interval</h3>
 <input type="number" @bind="cooldownInterval" /> *@
 </div>

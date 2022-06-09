@@ -1,20 +1,21 @@
 ﻿@implements IDisposable
 
+<div class="align-items-center">
+
 <div>
-<div>
+<div class="inputs">
 <h3>Minutes</h3>
-<input disabled=@buttonDisable pattern="[0-9]*" type="text" @bind="baseMinute" />
+<input disabled=@buttonDisable pattern="[0-9]*" type="text" onClick="this.select();" @bind="baseMinute" />
 <h3 class="repeatInput">Repeat</h3>
-<input disabled=@buttonDisable pattern="[0-9]*" type="text" @bind="repeat" />
+<input disabled=@buttonDisable pattern="[0-9]*" type="text" onClick="this.select();" @bind="repeat" />
 @* <h3>Gap between each interval</h3>
 <input type="number" @bind="cooldownInterval" /> *@
 </div>
 
-
 <div class="buttons">
-<button class="start" disabled=@buttonDisable @onclick="StartTimer">Start</button>
-<button class="start" @onclick="StopTimer">Stop</button>
-<button class="start" disabled=@buttonDisable @onclick="ResetTimer">Reset</button>
+<button class="start" disabled=@buttonDisable @onclick="StartTimer">START</button>
+<button class="start" @onclick="StopTimer">STOP</button>
+<button class="start" disabled=@buttonDisable @onclick="ResetTimer">RESET</button>
 </div>
 
 <div>
@@ -31,6 +32,9 @@
 {
     <div class="cooldown"><h3>Cooldown Timer @secondTimer s</h3></div>
 }
+
+</div>
+
 <div class="countdown">
 @secondTimer
 </div>
@@ -39,10 +43,10 @@
 @code {
     public int _repeat { get; set; }
     public uint secondTimer { get; set; } = 0;
-    public int baseMinute { get; set; } = 0;
-    public int repeat { get; set; } = 0;
-    private uint secondMultiplier = 60;
-    public int cooldownInterval { get; set; } = 10;
+    public int baseMinute { get; set; }
+    public int repeat { get; set; }
+    private uint secondMultiplier = 3;
+    public int cooldownInterval { get; set; } = 2;
     public bool cooldownPeriod { get; set; } = true;
     public bool buttonDisable { get; set; }
     private System.Timers.Timer timer = new System.Timers.Timer(1000);

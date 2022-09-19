@@ -4,6 +4,16 @@
     text-align: center;
 }
 
+input[b-nqmppnqpq9]{
+    align-content: center;
+    max-width: 50px;
+    margin-top: 6px;
+}
+
+.inputs[b-nqmppnqpq9]{
+    text-align: center;
+}
+
 h3[b-nqmppnqpq9] {
     margin: 10px 0 0 0;
 }
@@ -23,6 +33,7 @@ h3[b-nqmppnqpq9] {
 
 .buttons[b-nqmppnqpq9]{
     margin: 20px 0 0 0;
+    text-align: center;
 }
 /* /Shared/MainLayout.razor.rz.scp.css */
 .page[b-jhoryzq6b8] {
